@@ -1,0 +1,16 @@
+version: '3'
+services:
+  # nombre del contenedor
+  react-app:
+    # imagen de node
+    image: node:22-alpine
+    # puertos
+    ports:
+      - '3000:3000'
+    # codigo que se usara en el contenedor ./ (indica la carpeta actual)
+    volumes:
+      - ./:/app
+    # directorio donde se ejecutaran los comando que escribamos
+    working_dir: /app
+    # comando de inicio al servidor de node
+    command: npm start
