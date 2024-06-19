@@ -10,7 +10,7 @@ Para la creacion de este proyecto se creo primero el archivo `docker-compose.yml
 el cual se encargara de la creacion del contenedor con node, luego de esto usamos el comando 
 
 ```sh
-docker-compose run -rm react-app npx create-react-app react-app --use-npm
+docker-compose run --rm react-app npx create-react-app react-app --use-npm
 ```
 
 `docker-compose run`: ejecuta el o los contenedor definidos en el archivo `docker-compose.yml` en este caso 
