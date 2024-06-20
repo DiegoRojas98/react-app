@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 // Import / Export 
 import {add,rest} from './math';
 import opertaion , {div} from './math2';
+// Props
+import Farewell, {FarewellName} from './components/Farewell';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -52,23 +54,28 @@ root.render(
     
     <h1>Hola mundo</h1>
 
-
+    {/* Componentes */}
     { Component() }
     <Component></Component>
     <Component/>
 
     <Component2/>
 
-
+    {/* JSX */}
     <Greet/>
     <Access/>
     <ShowObject/>
 
-
+    {/* Import / Export  */}
     { add(1,3)}  <br/>
     { rest(1,3)}  <br/>
     { opertaion(2,5)}  <br/>
     { div(9,3)} <br/>
+
+    {/* Props */}
+    <Farewell name='diego' hour={7} />
+    <Farewell name='nicolas' hour={19} arr={[1,2,3]} bool={true}/>
+    <FarewellName name='rojas'/>
   </div>
   /*<React.StrictMode>
     <App />

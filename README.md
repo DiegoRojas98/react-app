@@ -29,6 +29,19 @@ Para finalizar para levantar el servicio solo hace falta el comando
 docker-compose up
 ```
 
+## Sobre la ejecucion del proyecto al clonar (git clone)
+Para la ejecucion del proyecto una vez descargado ejecute el comando 
+
+```sh
+docker-compose run --rm react-app npm install --use-npm
+```
+
+Esto instalara las dependecias del proyecto requeridas luego de esto ejecute el comando
+
+```sh
+docker-compose up
+```
+
 
 ## Creacion del proyecto con node local
 para crear una aplicacion node solo hace falta el comando
@@ -232,3 +245,42 @@ Se da cuando queremos mejorar la lecttura de la estructura de codigo para otros 
 esta estencion es usada para dar a entender que el archivo contiene componetes y no solo es codigo JS
 de igual manera react es capas de interpretar la extencion JS y la JSX de manera correcta y ambas obtienen
 el mismo comportamiento al momento de jecutar el codigo
+
+
+## PROPS
+los props son las propiedades que se le da a un componente al momento de su llamado para el uso de las mismas
+como propiedades de un objeto dentro de las funciones del componente.
+
+```sh
+// /components/Farewell.jsx
+
+// podemos hacer uso del objeto completo y traer todas las propiedades generadas al momento de llamar el componente
+export default function Farewell(props){
+    return <>
+        <p>Adios {props.name}. (hora: {props.hour})</p>
+    </>
+}
+
+// Tambien podemos hacer uso de propiedades especificas (tambien llamdo estructuracion de objetos)
+export function FarewellName({name}){
+    return <>
+        <p>Adios {name}.</p>
+    </>
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Farewell, {FarewellName} from './components/Farewell';
+
+root.render(
+  <>
+    <Farewell name='diego' hour={7} />
+    // para uso de arreglos, numero, boleanos usamos las {}
+    <Farewell name='nicolas' hour={19} arr={[1,2,3]} bool={true}/>
+    <FarewellName name='rojas'/>
+  </>
+);
+```
