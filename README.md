@@ -79,7 +79,11 @@ root.render(
 
 ## componentes 
 Los componentes son elementos de codigo reutilizables los cuales se modifcan por medio de sus atributos ya que 
-generalmente son encapsulados como funciones que retornan codigo html (elementos)
+generalmente son encapsulados como funciones que retornan codigo html (elementos).
+
+Se aconseja que los componentes se encuentren en el directorio  `/src/Components`, y que los nombres de los archivos
+tengan el estilo camelcase `MyComponent`. asi mismo se aconseja que la funcion principal del componente se llame igual
+que el archivo y que siga la misma estructura camelcase.
 
 ```sh
 // con react podemos retornar elementos html en funciones
