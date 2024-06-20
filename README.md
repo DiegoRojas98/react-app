@@ -46,13 +46,13 @@ npm start
 
 ## sobre la estructura de REACT
 react contiene varios directorios y archivos entre los cuales estan
--`/node_modules`: contiene todas las dependncias 'librerias' que el proyecto requiere
--`/public`: este contiene los archivos que pueden ser accedidos por el usuario 
--`/public/index.html`: este archivo contiene lo basico de una pagina web en donde podremos ver la etiqueta 
+- `/node_modules`: contiene todas las dependncias 'librerias' que el proyecto requiere
+- `/public`: este contiene los archivos que pueden ser accedidos por el usuario 
+- `/public/index.html`: este archivo contiene lo basico de una pagina web en donde podremos ver la etiqueta 
 div con id root, el cual es donde se renderizara la aplicacion
--`/src`: contiene la funcionalidad esencial para la ejecuion de la aplicacion, aqui iran los archivos de 
+- `/src`: contiene la funcionalidad esencial para la ejecuion de la aplicacion, aqui iran los archivos de 
 nuestr aplicacion
--`/build`: al finalizar un desarrollo y ejecutar el comando `npm run build` se creara esta carpeta, donde
+- `/build`: al finalizar un desarrollo y ejecutar el comando `npm run build` se creara esta carpeta, donde
 iran la logina comprimida para su uso en produccion
 
 ## index.js
