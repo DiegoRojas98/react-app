@@ -8,6 +8,10 @@ import {add,rest} from './math';
 import opertaion , {div} from './math2';
 // Props
 import Farewell, {FarewellName} from './components/Farewell';
+// PropsTypes
+import Buttom from './components/Buttom';
+// Styles
+import Target from './components/Target';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -74,8 +78,15 @@ root.render(
 
     {/* Props */}
     <Farewell name='diego' hour={7} />
-    <Farewell name='nicolas' hour={19} arr={[1,2,3]} bool={true}/>
+    <Farewell name='nicolas' hour={19} arr={[1,2,3]} bool={true} func={ function() { console.log('farewell')}}/>
     <FarewellName name='rojas'/>
+
+    {/* PropsType */}
+    <Buttom text={'ComponetB'} />
+
+    {/* Styles */}
+    <Target />
+
   </div>
   /*<React.StrictMode>
     <App />

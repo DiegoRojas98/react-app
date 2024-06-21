@@ -251,6 +251,7 @@ el mismo comportamiento al momento de jecutar el codigo
 los props son las propiedades que se le da a un componente al momento de su llamado para el uso de las mismas
 como propiedades de un objeto dentro de las funciones del componente.
 
+
 ```sh
 // /components/Farewell.jsx
 
@@ -262,10 +263,15 @@ export default function Farewell(props){
 }
 
 // Tambien podemos hacer uso de propiedades especificas (tambien llamdo estructuracion de objetos)
-export function FarewellName({name}){
+// y el uso de la definicon de un valor por defecto, la cual se puede realizar de dos maneras
+export function FarewellName({name, hour = 12, minute}){
     return <>
-        <p>Adios {name}.</p>
+        <p>Adios {name}. (time: {hour}:{minute})</p>
     </>
+}
+
+FarewellName.defaultProps = {
+    minute: '25'
 }
 ```
 
@@ -278,9 +284,98 @@ import Farewell, {FarewellName} from './components/Farewell';
 root.render(
   <>
     <Farewell name='diego' hour={7} />
-    // para uso de arreglos, numero, boleanos usamos las {}
-    <Farewell name='nicolas' hour={19} arr={[1,2,3]} bool={true}/>
+    // para pasar arreglos, numeros, boleanos, objetos o funciones usamos las {}
+    <Farewell 
+      name='nicolas' 
+      hour={19} 
+      arr={[1,2,3]} 
+      bool={true} 
+      obj={ x: 'x', y: 'y'}
+      func={ fn() => { console.log('farewell')}}
+    />
     <FarewellName name='rojas'/>
+  </>
+);
+```
+
+## PropsType
+Los propstype son utiles al momento de declarar que tipo de dato se usara en un componente, este es un paquete por 
+lo tanto tendremos que descargarlo con el comando.
+Si esta ejecutando el proyecto en docker debe ejecutarlo dentro del contenedor
+
+```sh
+npm install --save prop-types
+```
+
+```sh
+// /components/Buttom.jsx
+import PropTypes  from "prop-types";
+
+export default function Buttom({text}){
+    return <>
+     <button>
+        { text }
+    </button>
+    </>
+}
+
+// definicon de prototipos esperados y requerido 
+Buttom.protoTypes = {
+    text: PropTypes.string.isRequired
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Buttom from './components/Buttom';
+
+root.render(
+  <>
+  // correcto
+  <Buttom text={'ComponetB'} />
+  // erroneos
+  // <Buttom text={ {x: 'x'} } />
+  // <Buttom  />
+  </>
+);
+```
+
+
+## Estilo en React
+Los estilos seran aplicados en linea, similar a como lo realizariamos en html, y existen varias maneras
+
+```sh
+// /css/Target.css
+.Target {
+    background: #303030;
+    color: #fff;
+}
+```
+
+```sh
+// /components/Target.jsx
+import '../css/Target.css'; 
+
+export default function Target(){
+    const pStyle = { textAlign: 'center' };
+    return <div className='Target'>
+            <h1 style={{ color: 'red'}}>Tarjeta</h1>
+            <p style={pStyle }>Estilo en react</p>
+        </div>
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Target from './components/Target';
+
+root.render(
+  <>
+    <Target />
   </>
 );
 ```

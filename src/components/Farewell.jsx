@@ -5,8 +5,13 @@ export default function Farewell(props){
     </>
 }
 
-export function FarewellName({name}){
+export function FarewellName({name, hour = 12, minute}){
     return <>
-        <p>Adios {name}.</p>
+        <p>Adios {name}. (time: {hour}:{minute})</p>
     </>
 }
+
+FarewellName.defaultProps = {
+    minute: '25',
+}
+
