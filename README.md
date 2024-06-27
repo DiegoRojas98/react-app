@@ -264,12 +264,16 @@ export default function Farewell(props){
 
 // Tambien podemos hacer uso de propiedades especificas (tambien llamdo estructuracion de objetos)
 // y el uso de la definicon de un valor por defecto, la cual se puede realizar de dos maneras
+// definiendola en los parametros de entrada de la funcion
 export function FarewellName({name, hour = 12, minute}){
     return <>
         <p>Adios {name}. (time: {hour}:{minute})</p>
     </>
 }
 
+// con el metodo defaultProps
+// Este metodo sera removido en futuras verciones de react por tal
+// motivo se desaconseja su uso
 FarewellName.defaultProps = {
     minute: '25'
 }
@@ -376,6 +380,176 @@ import Target from './components/Target';
 root.render(
   <>
     <Target />
+  </>
+);
+```
+
+
+## Componentes declarados clases
+a lo largo de react han existido varias formas de declara un componente la principal es la de usar
+funciones , otra tambien usada pero no tan conocida es definir el componente como una clase
+
+```sh
+// /components/ClassComponet.jsx
+import { Component } from "react";
+
+export default class ClassComponet extends Component {
+    render() {
+        return <h3>Componente declarado con clase</h3>
+    }
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Target from './components/ClassComponet';
+
+root.render(
+  <>
+    <ClassComponet />
+  </>
+);
+```
+
+
+## Event Handlers (manejo de eventos)
+Los eventos en react pueden ser manejados por medio de los props especificos on y sirven segun el elemento a que se aplique 
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// una forma de crear variables realacionadas a funciones y eventos es nombrarlar handle 
+// y le agregamos el evento especifico
+const handleChange = e => console.log(e.target.value);
+// en este caso usamo una funcion flecha que equivale a 
+// const handleChange = function(event) { console.log(e.target.value) };
+
+root.render(
+  <input onChange={ e => console.log(e.target.value)} />
+  <input onChange={ handleChange } />
+);
+```
+
+## Fetch API 
+Nos permite solicitar datos de servidores externos, el fetch es una de las diversar formas de hacerlo
+
+```sh
+// /components/Fetch.jsx
+export default function Fetch() {
+  // en este caso usamos un onckil de buttom para llamar los datos.
+  return <button onClick={ () => {
+      alert('Revisa la consola');
+      fetch('https://autocom-production.up.railway.app/api/user')
+      .then(response => {
+            // validamos si la respuesta es correcta de lo contrario generamos un throw para 
+            // indicar que algo esta mal
+            if(!response.ok) {
+              throw new Error('Link caido por favor en /src/components/Fetch.jsx linea 4 cambia el link por https://jsonplaceholder.typicode.com/comments');
+            } 
+            return response.json()
+      })
+      .then(data => console.log(data))
+      .catch( error => console.log(error))
+  }}>
+      Fetch
+  </button>
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Fetch from './components/Fetch';
+
+root.render(
+  <>
+    <Fetch />
+  </>
+);
+```
+
+## Importacion de Modulos
+Al react ser una biblioteca de codigo abierto podemos importar modulos de otros creadores
+en este caso ejecutamos el comando siguiente comando, el cual instalara un modulo de iconos
+
+```sh
+npm install react-icons --save
+```
+
+```sh
+// /components/ImportModuls-jsx
+// Este modulo requiere React
+import React from 'react';
+// importacion de iconos y su uso en https://react-icons.github.io/react-icons/
+// importacion del icono especifico
+import { FaReact } from "react-icons/fa6";
+
+export default class ImportModules extends React.Component {
+    render() {
+      return <h3> 
+        Importacion de modulos (iconos): 
+        // uso de icono
+        <FaReact />
+        </h3>
+    }
+
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Fetch from './components/ImportModuls';
+
+root.render(
+  <>
+    <Fetch />
+  </>
+);
+```
+
+## Hock Reacts
+Son funciones proveidas por reacts, para funcionalidad extra de la aplicacion
+
+## UseState
+Permite definir el estado de un componente y modificarlo, util para almacenar valores en variables
+
+```sh
+// /components/UseState-jsx
+// Este modulo requiere React
+import React, {useState} from "react";
+
+export default function UseState(){
+    // de useState podemos extraer dos valores el primero sera la varible
+    // que queramos usar y el segundo la funcion con la cual modifiaremos
+    // dicha variable, tener en cuenta siempre llamar la funcion igual que 
+    // la variable con la unica diferencia que al principio debemos poner 
+    // la palabra clave set, esto por temas de facilidad de lectura
+    const [val, setVal] = useState(0);
+
+    return <>
+        <h3>Contrador: { val } </h3>
+        // para usar el useState podemos apoyarnos de los eventHanler
+        <button onClick={() => setVal(val + 1) }>Agregar</button>
+    </>
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import UseState from './components/UseState';
+
+root.render(
+  <>
+    <UseState />
   </>
 );
 ```

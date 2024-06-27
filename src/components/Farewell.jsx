@@ -1,5 +1,4 @@
 export default function Farewell(props){
-    console.log(props);
     return <>
         <p>Adios {props.name}. (hora: {props.hour})</p>
     </>

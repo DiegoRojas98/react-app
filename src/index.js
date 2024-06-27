@@ -12,6 +12,15 @@ import Farewell, {FarewellName} from './components/Farewell';
 import Buttom from './components/Buttom';
 // Styles
 import Target from './components/Target';
+// Class Component
+import ClassComponet from './components/ClassComponet';
+// Fecth 
+import Fetch from './components/Fetch';
+// importacion  de modulos
+import ImportModuls from './components/ImportModuls';
+//Hooks
+//useState
+import UseState from './components/UseState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -51,6 +60,8 @@ function ShowObject(){
   return <h2>{ JSON.stringify(user) }</h2>
 }
 
+// Manejo de eventos
+const handleChange = e => console.log(e.target.value);
 
 
 root.render(
@@ -86,6 +97,23 @@ root.render(
 
     {/* Styles */}
     <Target />
+
+    {/* Class Component */}
+    <ClassComponet />
+
+    {/* Manejo de evento */}
+    <input onChange={ e => console.log(e.target.value)} />
+    <input onChange={ handleChange } />
+
+    {/* Fetch */}
+    <br/>
+    <Fetch />
+
+    {/* Importacion de modulos (iconos) */}
+    <ImportModuls />
+
+    {/* Hooks */}
+    <UseState />
 
   </div>
   /*<React.StrictMode>
