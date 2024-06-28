@@ -435,7 +435,7 @@ root.render(
 ```
 
 ## Fetch API 
-Nos permite solicitar datos de servidores externos, el fetch es una de las diversar formas de hacerlo
+Nos permite solicitar datos de servidores externos, el fetch es una de las diversas formas de hacerlo
 
 ```sh
 // /components/Fetch.jsx
@@ -531,6 +531,7 @@ export default function UseState(){
     // dicha variable, tener en cuenta siempre llamar la funcion igual que 
     // la variable con la unica diferencia que al principio debemos poner 
     // la palabra clave set, esto por temas de facilidad de lectura
+    // tener en cuenta que a la variable se le conoce como 'estado'
     const [val, setVal] = useState(0);
 
     return <>
@@ -550,6 +551,52 @@ import UseState from './components/UseState';
 root.render(
   <>
     <UseState />
+  </>
+);
+```
+
+
+## UseEffect
+Sirve para jecutar acciones cuando se detecten cambios en la interfaz, ha menudo se
+usa conjunto con useState
+
+```sh
+// /components/UseEffect-jsx
+import React, {useState, useEffect} from "react";
+
+export default function Useeffect(){
+    const [val, setVal] = useState();
+
+    // useEffect se ejcutara siempre que react detecte un cambio en el dom
+    // en este caso el evento  'onClick={() => alert('Has excrito: ' + val)}'
+    // cambia en su mensaje siempre que se detecta un cambio en el input
+    useEffect(() => console.log('Remderizado'));
+
+    // encaso de que queramos que se ejecute solo una vez, es decir cuando el componete 
+    // sea creado le pasamaos como segundo parametro a 'useEffet' un arreglo vacio
+    // useEffect(() => console.log('Remderizado'), []);
+
+    // tambien podemos ejecutar el 'useEffect' solo cuando un estado especifico cambie
+    // teniendo en cuenta que un componente puede tener multiples estado 
+    // useEffect(() => console.log('Remderizado'), [nameState]); 
+
+    return <>
+        <br /> <br />
+        <input type="text" onChange={ e => setVal(e.target.value)} />
+        <button type="button" onClick={() => alert('Has excrito: ' + val)}>Alert</button>
+    </>
+}
+```
+
+```sh
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Useeffect from './components/UseEffect.';
+
+root.render(
+  <>
+    <Useeffect />
   </>
 );
 ```

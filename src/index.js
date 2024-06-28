@@ -21,6 +21,8 @@ import ImportModuls from './components/ImportModuls';
 //Hooks
 //useState
 import UseState from './components/UseState';
+//useEffect
+import Useeffect from './components/UseEffect.';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -114,6 +116,7 @@ root.render(
 
     {/* Hooks */}
     <UseState />
+    <Useeffect />
 
   </div>
   /*<React.StrictMode>
